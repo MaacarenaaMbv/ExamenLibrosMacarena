@@ -1,0 +1,31 @@
+﻿@model List<VistaPedido>
+
+<h1>Sus productos comprados</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Portada</th>
+            <th>Nombre</th>
+            <th>Titulo</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            <th>Precio Final</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(VistaPedido v in Model)
+        {
+            <tr>
+                <td>@v.IdVistaPedido</td>
+                <td><img src="~/images/@v.Portada" style="width:100px; height:100px" /></td>
+                <td>@v.Nombre</td>
+                <td>@v.Titulo</td>
+                <td>@v.Fecha</td>
+                <td>@v.Precio €</td>
+                <td>@v.PrecioFinal €</td>
+            </tr>
+        }
+    </tbody>
+</table>

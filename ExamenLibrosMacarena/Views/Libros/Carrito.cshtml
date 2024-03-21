@@ -1,0 +1,53 @@
+﻿@model List<Libro>
+
+<a asp-controller="Libros" asp-action="Index"
+   class="btn btn-secondary w-25 my-3">
+    Volver a Libros
+</a>
+
+@if (Model == null)
+{
+    <h2 class="text-danger">No hay libros en tu carrito</h2>
+}
+else
+{
+    <h3 class="text-primary mt-3">Libros en carrito: @Model.Count()</h3>
+    <h3 class="text-success mt-2">Precio total: @Model.Sum(c => c.Precio)€</h3>
+
+    <table class="table table-borderless mt-4">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Libro li in Model)
+            {
+                <tr>
+                    <td><img src="~/images/@li.Portada" width="50" height="50" /></td>
+                    <td>@li.Titulo</td>
+                    <td>@li.Autor</td>
+                    <td>@li.Editorial</td>
+                    <td>@li.Precio</td>
+
+                    <td>
+                        <a asp-controller="Libros" asp-action="EliminarLibroCarrito"
+                           asp-route-idlibro="@li.IdLibro" class="btn btn-danger w-100">
+                            Eliminar del carrito
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <a asp-controller="Libros" asp-action="ComprarCarrito"
+       class="btn btn-success w-100 mt-3">
+        Realizar compra
+    </a>
+}

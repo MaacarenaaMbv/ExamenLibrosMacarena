@@ -1,0 +1,92 @@
+﻿@model List<Libro>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu título aquí</title>
+    <style>
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .card {
+            width: calc(24% - 20px); /* Ajustar el ancho según el número de elementos por fila */
+            /*height: 350px; /* Ajustar la altura según sea necesario */
+            height: auto;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            text-align: center;
+            min-width: 18em;
+            max-width: 19em;
+        }
+
+
+        .pageTitle {
+            font-size: 18px;
+            color: #3a3a3a;
+            margin: 10px 1px;
+        }
+        }
+
+        .bottomCardTitle {
+            font-size: 24px;
+            color: #3a3a3a;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .bottomCardText {
+            font-size: 14px;
+            color: #9a9a9a;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        #IconRight, #backIconBottom {
+            width: 20px;
+            height: 20px;
+            background: url(https://image.ibb.co/fV7eBy/icon1.png) no-repeat center;
+            background-size: cover;
+        }
+
+        .card img {
+            max-width: 70%;
+            height: auto;
+            margin-bottom: 10px
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="card-container">
+        @foreach (Libro li in Model)
+        {
+            <div class="card">
+                <div id="App">
+                    <div id="Top">
+                        <div id="titleBar">
+                            <img src="~/images/@li.Portada" alt="Descripción de la imagen" width="80%">
+                            <p class="pageTitle" style="font-weight: bold">@li.Titulo</p>
+                        </div>
+                    </div>
+                    <div id="Bottom">
+                        <a asp-controller="Libros"
+                           asp-action="DetailsLibro"
+                           asp-route-idlibro="@li.IdLibro" class="btn btn-info" style="margin-top:15px">
+                            Detalles
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</body>
